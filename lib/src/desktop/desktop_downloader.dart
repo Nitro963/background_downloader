@@ -540,11 +540,10 @@ final class DesktopDownloader extends BaseDownloader {
   }
 
   @override
-  Future<bool> openFile(Task? task, String? filePath, String? mimeType) async {
-    final executable =
-        defaultTargetPlatform == TargetPlatform.linux
-            ? 'xdg-open'
-            : defaultTargetPlatform == TargetPlatform.macOS
+  Future<bool> openFile(Task? task, String? filePath, String? mimeType, String? message) async {
+    final executable = Platform.isLinux
+        ? 'xdg-open'
+        : Platform.isMacOS
             ? 'open'
             : 'start';
     filePath ??= await task!.filePath();

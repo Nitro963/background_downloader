@@ -265,13 +265,14 @@ class UriUtilsMethodCallHelper(private val plugin: BDPlugin) : MethodCallHandler
                 val args = call.arguments as? List<*>
                 val uriString = args?.get(0) as? String
                 val mimeType = args?.get(1) as? String
+                val message = args?.getOrNull(2) as? String?
 
                 if (uriString == null) {
                     result.error("INVALID_ARGUMENTS", "URI string is required", null)
                     return
                 }
 
-                if (!doOpenFile(activity, uriString, mimeType ?: getMimeType(uriString))) {
+                if (!doOpenFile(activity, uriString, mimeType ?: getMimeType(uriString), message ?: "Open With")) {
                     result.error("OPEN_FILE_FAILED", "Failed to open file", null)
                 }
                 result.success(true)

@@ -62,7 +62,7 @@ final class DesktopDownloader extends BaseDownloader {
   }
 
   @override
-  Future<bool> openFile(Task? task, String? filePath, String? mimeType) {
+  Future<bool> openFile(Task? task, String? filePath, String? mimeType, String? message) {
     throw UnimplementedError();
   }
 

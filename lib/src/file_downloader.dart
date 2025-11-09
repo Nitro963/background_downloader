@@ -1143,13 +1143,13 @@ interface class FileDownloader {
   /// though implementation depends on the platform and may not always work.
   ///
   /// Returns true if an application was launched successfully
-  Future<bool> openFile({Task? task, String? filePath, String? mimeType}) {
+  Future<bool> openFile({Task? task, String? filePath, String? mimeType, String? message}) {
     assert(task != null || filePath != null, 'Task or filePath must be set');
     assert(
       !(task != null && filePath != null),
       'Either task or filePath must be set, not both',
     );
-    return _downloader.openFile(task, filePath, mimeType);
+    return _downloader.openFile(task, filePath, mimeType, message);
   }
 
   /// Return the platform version as a String

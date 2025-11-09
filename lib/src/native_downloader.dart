@@ -468,11 +468,12 @@ abstract base class NativeDownloader extends BaseDownloader {
   ]);
 
   @override
-  Future<bool> openFile(Task? task, String? filePath, String? mimeType) async {
+  Future<bool> openFile(Task? task, String? filePath, String? mimeType, String? message) async {
     final result = await methodChannel.invokeMethod<bool>('openFile', [
       task != null ? jsonEncode(task.toJson()) : null,
       filePath,
       mimeType,
+      message,
     ]);
     return result ?? false;
   }

@@ -1174,7 +1174,8 @@ class BDPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
             uri?.toString() ?: task.filePath(applicationContext)
         }
         val mimeType = args[2] as String? ?: getMimeType(filePath)
-        return if (activity != null) doOpenFile(activity!!, filePath, mimeType) else false
+        val message = args.getOrNull(3) as? String?
+        return if (activity != null) doOpenFile(activity!!, filePath, mimeType, message ?: "Open With") else false
     }
 
     /**

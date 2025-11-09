@@ -788,7 +788,7 @@ abstract base class BaseDownloader {
   /// Returns true if an application was launched successfully
   ///
   /// Precondition: either task or filename is not null
-  Future<bool> openFile(Task? task, String? filePath, String? mimeType);
+  Future<bool> openFile(Task? task, String? filePath, String? mimeType, String? message);
 
   /// Return the platform version as a String
   Future<String> platformVersion() =>

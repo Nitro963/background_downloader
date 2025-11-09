@@ -416,10 +416,10 @@ final class _DesktopUriUtils extends UriUtils {
   }
 
   @override
-  Future<bool> openFile(Uri uri, {String? mimeType}) async {
+  Future<bool> openFile(Uri uri, {String? mimeType, String? message}) async {
     try {
       final filePath = uri.toFilePath();
-      return await _downloader.openFile(null, filePath, mimeType);
+      return await _downloader.openFile(null, filePath, mimeType, message);
     } catch (e) {
       log.warning('Error opening file: $uri', e);
       return false;
@@ -554,9 +554,9 @@ final class _NativeUriUtils extends UriUtils {
   }
 
   @override
-  Future<bool> openFile(Uri uri, {String? mimeType}) async {
+  Future<bool> openFile(Uri uri, {String? mimeType, String? message}) async {
     try {
-      await _methodChannel.invokeMethod('openFile', [uri.toString(), mimeType]);
+      await _methodChannel.invokeMethod('openFile', [uri.toString(), mimeType, message]);
       return true;
     } catch (e) {
       log.warning('Error opening file at URI $uri: $e');
